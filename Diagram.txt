@@ -1,74 +1,67 @@
-Fast Food Ordering System – Class Diagram (Text Version)
+FAST FOOD SYSTEM - CLASS DIAGRAM
 
-+----------------+
-|      Main      |
-+----------------+
-| - menu: Menu   |
++-------------------+
+|       Main        |
++-------------------+
+| - menu: Menu      |
 | - orderQueue: OrderQueue |
-+----------------+
-| + main()       |
-+----------------+
-
-        |
-        |
-        v
-
-+----------------+
-|      Menu      |
-+----------------+
+| - stats: OrderStats     |
++-------------------+
+| + main(String[] args) |
++-------------------+
+          |
+          v
++-------------------+
+|       Menu        |
++-------------------+
 | - items: ArrayList<MenuItem> |
-+----------------+
-| + displayMenu()               |
-| + getItem(index: int) : MenuItem |
-+----------------+
++-------------------+
+| + displayMenu()   |
+| + getItem(int)    |
++-------------------+
+          |
+          v
++-------------------+
+|     MenuItem      |
++-------------------+
+| - name: String    |
+| - price: double   |
++-------------------+
+| + MenuItem(name, price) |
++-------------------+
 
-        |
-        |
-        v
-
-+----------------+
-|    MenuItem    |
-+----------------+
-| - name: String |
-| - price: double|
-+----------------+
-| + constructor  |
-+----------------+
-
-        |
-        |
-        v
-
-+----------------+
-|     Order      |
-+----------------+
++-------------------+
+|      Order        |
++-------------------+
 | - orderItems: ArrayList<MenuItem> |
-+----------------+
-| + addItem(item: MenuItem)          |
-| + getTotal(): double               |
-+----------------+
++-------------------+
+| + addItem(MenuItem) |
+| + calculateTotalRecursive() |
++-------------------+
 
-        |
-        |
-        v
-
-+----------------+
-|   OrderQueue   |
-+----------------+
++-------------------+
+|    OrderQueue     |
++-------------------+
 | - orders: Queue<Order> |
-+----------------+
-| + addOrder(order: Order) : void |
-| + processOrder() : Order         |
-+----------------+
++-------------------+
+| + addOrder(Order) |
+| + processOrder(): Order |
+| + isEmpty(): boolean |
++-------------------+
 
-        |
-        |
-        v
++-------------------+
+|      Receipt      |
++-------------------+
+|                   |
++-------------------+
+| + printReceipt(Order) |
++-------------------+
 
-+----------------+
-|     Receipt    |
-+----------------+
-|                  |
-+----------------+
-| + printReceipt(order: Order) |
-+----------------+
++-------------------+
+|    OrderStats     |
++-------------------+
+| - stats: HashMap<String, Integer> |
++-------------------+
+| + addOrder(Order)  |
+| + printStats()     |
++-------------------+
