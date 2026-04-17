@@ -3,7 +3,7 @@ Author: Trinity Hurtado
 Class: MenuItem.java
 
 Description:
-Represents a single menu item with name and price.
+Represents a menu item with a name and price.
 */
 
 public class MenuItem {

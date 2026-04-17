@@ -3,40 +3,33 @@ Author: Trinity Hurtado
 Class: Menu.java
 
 Description:
-Stores and manages all menu items using an ArrayList.
-Provides methods to display and retrieve menu items.
+Represents the restaurant menu with an ArrayList of MenuItem objects.
 */
 
 import java.util.ArrayList;
 
 public class Menu {
-
-    // Data Structure: ArrayList to store menu items
-    ArrayList<MenuItem> items = new ArrayList<>();
+    private ArrayList<MenuItem> items = new ArrayList<>();
 
     public Menu() {
         items.add(new MenuItem("Burger", 5.99));
         items.add(new MenuItem("Fries", 2.99));
-        items.add(new MenuItem("Drink", 1.99));
-        items.add(new MenuItem("Nuggets", 6.49));
+        items.add(new MenuItem("Soda", 1.50));
+        items.add(new MenuItem("Salad", 3.99));
     }
 
     public void displayMenu() {
+        System.out.println("\n--- MENU ---");
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(i + ": " + items.get(i).name + " - $" + items.get(i).price);
+            System.out.println(i + ". " + items.get(i).name + " - $" + items.get(i).price);
         }
     }
 
-    /*
-    Algorithm: Menu Item Retrieval (Search)
-
-    This method retrieves an item based on its index.
-    The user selects an index, and the program returns that item.
-
-    Time Complexity: O(1)
-    */
     public MenuItem getItem(int index) {
-        return items.get(index);
+        if (index >= 0 && index < items.size()) {
+            return items.get(index);
+        }
+        System.out.println("Invalid item number!");
+        return null;
     }
 }
-

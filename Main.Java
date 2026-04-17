@@ -3,17 +3,17 @@ Author: Trinity Hurtado
 Class: Main.java
 
 Description:
-This is the main driver of the Fast Food Ordering System.
-It handles user input and controls program flow.
+Main driver for the Fast Food Ordering System.
+Handles user input, menu display, order placement, and processing.
 */
 
-import java.util.Scanner; // fixed typo
-// make sure OrderQueue, Menu, and Receipt classes are in the same folder or package
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
-        OrderQueue orderQueue = new OrderQueue(); // FIXED scope issue
+        OrderQueue orderQueue = new OrderQueue();
+        OrderStats stats = new OrderStats();
         Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to Fast Food System!");
@@ -24,36 +24,53 @@ public class Main {
             System.out.println("3. Process Next Order");
             System.out.println("4. Exit");
 
-            int choice = input.nextInt();
+            String inputStr = input.nextLine();
+            int choice;
+
+            try {
+                choice = Integer.parseInt(inputStr);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a number 1-4.");
+                continue;
+            }
 
             if (choice == 1) {
                 menu.displayMenu();
-            }
-
-            else if (choice == 2) {
+            } else if (choice == 2) {
                 Order order = new Order();
-
                 menu.displayMenu();
                 System.out.println("Enter item number (-1 to finish):");
 
                 while (true) {
-                    int item = input.nextInt();
+                    inputStr = input.nextLine();
+                    int item;
+                    try {
+                        item = Integer.parseInt(inputStr);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input!");
+                        continue;
+                    }
                     if (item == -1) break;
-
                     order.addItem(menu.getItem(item));
                 }
 
-                orderQueue.addOrder(order); // FIXED
+                orderQueue.addOrder(order);
                 System.out.println("Order added to queue!");
-            }
-
-            else if (choice == 3) {
-                Receipt receipt = new Receipt();
-                receipt.printReceipt(orderQueue.processOrder()); // FIXED
-            }
-
-            else if (choice == 4) {
+            } else if (choice == 3) {
+                if (orderQueue.isEmpty()) {
+                    System.out.println("No orders to process!");
+                } else {
+                    Order processed = orderQueue.processOrder();
+                    Receipt receipt = new Receipt();
+                    receipt.printReceipt(processed);
+                    stats.addOrder(processed);
+                    stats.printStats();
+                }
+            } else if (choice == 4) {
+                System.out.println("Exiting system. Goodbye!");
                 break;
+            } else {
+                System.out.println("Please select 1-4.");
             }
         }
 
