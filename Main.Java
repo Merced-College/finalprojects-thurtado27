@@ -1,16 +1,19 @@
-/* 
-Name: Trinity Hurtado 
+/*
+Author: Trinity Hurtado
 Class: Main.java
-Description: This is the main driver of the Fast Food Ordering System. It handles user input and controls program flow. 
+
+Description:
+This is the main driver of the Fast Food Ordering System.
+It handles user input and controls program flow.
 */
 
-import java.until.Scanner;
+import java.util.Scanner; // FIXED typo
+// make sure OrderQueue, Menu, and Receipt classes are in the same folder or package
 
 public class Main {
     public static void main(String[] args) {
         Menu menu = new Menu();
-        OrderQueue OrderQueue = new OrderQueue();
-
+        OrderQueue orderQueue = new OrderQueue(); // FIXED scope issue
         Scanner input = new Scanner(System.in);
 
         System.out.println("Welcome to Fast Food System!");
@@ -22,12 +25,12 @@ public class Main {
             System.out.println("4. Exit");
 
             int choice = input.nextInt();
-        
-        if (choice == 1) {
-            menu.displayMenu();
-        }
 
-        else if (choice == 2) {
+            if (choice == 1) {
+                menu.displayMenu();
+            }
+
+            else if (choice == 2) {
                 Order order = new Order();
 
                 menu.displayMenu();
@@ -40,22 +43,20 @@ public class Main {
                     order.addItem(menu.getItem(item));
                 }
 
-                orderQueue.addOrder(order);
+                orderQueue.addOrder(order); // FIXED
                 System.out.println("Order added to queue!");
             }
 
-        else if (choice == 3) {
+            else if (choice == 3) {
                 Receipt receipt = new Receipt();
-                receipt.printReceipt(orderQueue.processOrder());
+                receipt.printReceipt(orderQueue.processOrder()); // FIXED
             }
 
-        else if (choice == 4) {
+            else if (choice == 4) {
                 break;
             }
         }
 
         input.close();
-
-
     }
 }
