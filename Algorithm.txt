@@ -1,36 +1,71 @@
-Fast Food Ordering System – Algorithms
+FAST FOOD SYSTEM - ALGORITHMS
 
-1. Menu Search Algorithm
-   Description: 
-      This algorithm retrieves a menu item based on the index selected by the user.
-      It searches through the ArrayList of menu items and returns the matching item.
-   Steps:
-      1. User inputs item index.
-      2. Access ArrayList at that index.
-      3. Return MenuItem object.
-   Time Complexity: O(1) – direct access by index.
-   Data Structure Used: ArrayList
+1. Calculate Total (Recursive)
+---------------------------------
+Class: Order.java
+Method: calculateTotalRecursive()
 
-2. Total Cost Calculation Algorithm
-   Description:
-      This algorithm calculates the total cost of all items in an order.
-      It iterates through the ArrayList of ordered items and sums their prices.
-   Steps:
-      1. Initialize total = 0
-      2. For each item in orderItems:
-            total += item.price
-      3. Return total
-   Time Complexity: O(n) – must iterate through all items in the order.
-   Data Structure Used: ArrayList
+Algorithm:
+- Input: List of MenuItem objects in the order
+- Base Case: If index < 0, return 0
+- Recursive Case: Return price of item at current index + recursiveTotal(index - 1)
+- Output: Total cost of the order
 
-3. Order Queue Processing Algorithm
-   Description:
-      This algorithm processes the next customer order using a FIFO (First-In-First-Out) queue.
-      It removes the first order from the queue and returns it for receipt generation.
-   Steps:
-      1. Check if the order queue is empty
-      2. If empty, return null
-      3. If not, remove the first order from the queue using poll()
-      4. Return the order
-   Time Complexity: O(1) – removing the first element of a queue is constant time.
-   Data Structure Used: Queue (LinkedList implementation)
+Usage:
+- Called in Receipt.printReceipt() to calculate the total cost of the order
+- Demonstrates recursion
+
+Time Complexity: O(n), where n = number of items in the order
+
+
+2. Process Order Queue
+---------------------------------
+Class: OrderQueue.java
+Method: processOrder()
+
+Algorithm:
+- Input: Queue of orders
+- Action: Remove the first order from the queue (FIFO)
+- Output: The removed order
+
+Usage:
+- Called in Main.java when processing the next order
+- Implements queue behavior
+
+Time Complexity: O(1)
+
+
+3. Track Order Statistics
+---------------------------------
+Class: OrderStats.java
+Method: addOrder()
+
+Algorithm:
+- Input: Order object
+- For each MenuItem in the order:
+    - If item name exists in HashMap, increment count
+    - Else, add item name to HashMap with count = 1
+- Output: Updated HashMap of item counts
+
+Usage:
+- Called after processing an order to track total quantities of each item ordered
+- Demonstrates usage of HashMap as a hash table
+
+Time Complexity: O(m), where m = number of items in the order
+
+
+4. Menu Item Selection
+---------------------------------
+Class: Menu.java
+Method: getItem(int index)
+
+Algorithm:
+- Input: Integer index
+- Check if index is valid (0 <= index < size of menu)
+- If valid, return the corresponding MenuItem
+- Else, print error and return null
+
+Usage:
+- Called when placing an order to select items from the menu
+
+Time Complexity: O(1)
