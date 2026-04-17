@@ -1,0 +1,74 @@
+Fast Food Ordering System – Class Diagram (Text Version)
+
++----------------+
+|      Main      |
++----------------+
+| - menu: Menu   |
+| - orderQueue: OrderQueue |
++----------------+
+| + main()       |
++----------------+
+
+        |
+        |
+        v
+
++----------------+
+|      Menu      |
++----------------+
+| - items: ArrayList<MenuItem> |
++----------------+
+| + displayMenu()               |
+| + getItem(index: int) : MenuItem |
++----------------+
+
+        |
+        |
+        v
+
++----------------+
+|    MenuItem    |
++----------------+
+| - name: String |
+| - price: double|
++----------------+
+| + constructor  |
++----------------+
+
+        |
+        |
+        v
+
++----------------+
+|     Order      |
++----------------+
+| - orderItems: ArrayList<MenuItem> |
++----------------+
+| + addItem(item: MenuItem)          |
+| + getTotal(): double               |
++----------------+
+
+        |
+        |
+        v
+
++----------------+
+|   OrderQueue   |
++----------------+
+| - orders: Queue<Order> |
++----------------+
+| + addOrder(order: Order) : void |
+| + processOrder() : Order         |
++----------------+
+
+        |
+        |
+        v
+
++----------------+
+|     Receipt    |
++----------------+
+|                  |
++----------------+
+| + printReceipt(order: Order) |
++----------------+

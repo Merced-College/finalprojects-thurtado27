@@ -1,0 +1,36 @@
+Fast Food Ordering System – Algorithms
+
+1. Menu Search Algorithm
+   Description: 
+      This algorithm retrieves a menu item based on the index selected by the user.
+      It searches through the ArrayList of menu items and returns the matching item.
+   Steps:
+      1. User inputs item index.
+      2. Access ArrayList at that index.
+      3. Return MenuItem object.
+   Time Complexity: O(1) – direct access by index.
+   Data Structure Used: ArrayList
+
+2. Total Cost Calculation Algorithm
+   Description:
+      This algorithm calculates the total cost of all items in an order.
+      It iterates through the ArrayList of ordered items and sums their prices.
+   Steps:
+      1. Initialize total = 0
+      2. For each item in orderItems:
+            total += item.price
+      3. Return total
+   Time Complexity: O(n) – must iterate through all items in the order.
+   Data Structure Used: ArrayList
+
+3. Order Queue Processing Algorithm
+   Description:
+      This algorithm processes the next customer order using a FIFO (First-In-First-Out) queue.
+      It removes the first order from the queue and returns it for receipt generation.
+   Steps:
+      1. Check if the order queue is empty
+      2. If empty, return null
+      3. If not, remove the first order from the queue using poll()
+      4. Return the order
+   Time Complexity: O(1) – removing the first element of a queue is constant time.
+   Data Structure Used: Queue (LinkedList implementation)
