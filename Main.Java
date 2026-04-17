@@ -7,7 +7,7 @@ This is the main driver of the Fast Food Ordering System.
 It handles user input and controls program flow.
 */
 
-import java.util.Scanner; // FIXED typo
+import java.util.Scanner; // fixed typo
 // make sure OrderQueue, Menu, and Receipt classes are in the same folder or package
 
 public class Main {
